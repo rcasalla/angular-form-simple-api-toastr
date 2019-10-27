@@ -40,10 +40,7 @@ export class ClientCreateComponent implements OnInit {
 
   showSuccess() {
     this.toastr.success("Cliente", "Creado exitosamente!");
-    for (let i; this.clientes.length; i++) {
-      let c: Client = this.clientes[i];
-      console.log(c);
-    }
+   
   }
   ngOnInit() {
     this.clientService
