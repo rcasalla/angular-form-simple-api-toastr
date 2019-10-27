@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Client } from "../client";
 import { ClientService } from "../client.service";
@@ -8,8 +8,10 @@ import { ClientService } from "../client.service";
   templateUrl: "./client-create.component.html",
   styleUrls: ["./client-create.component.css"]
 })
-export class ClientCreateComponent {
+export class ClientCreateComponent implements OnInit {
   clientForm: FormGroup;
+  client: Client;
+  clientes: Client[];
 
   constructor(
     private clientService: ClientService,
@@ -23,9 +25,16 @@ export class ClientCreateComponent {
 
   createClient(newClient: Client) {
     // Process checkout data here
-    console.warn("Your order has been submitted", newClient);
+    console.warn("el cliente fue creado", newClient);
+    this.clientService
+      .createClient(newClient)
+      .subscribe(client => (this.client = client));
+    this.clientForm.reset();
+  }
 
-   this.clientForm.reset();
+  ngOnInit() {
+    this.clientService
+      .getClientes()
+      .subscribe(clientes => (this.clientes = clientes));
   }
 }
-

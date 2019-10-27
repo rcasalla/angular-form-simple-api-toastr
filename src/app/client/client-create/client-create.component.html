@@ -33,3 +33,16 @@
 		<button class="button mx-sm-3 mb-2" type="submit" [disabled]="clientForm.invalid">Create</button>
 
 </form>
+
+<br>
+<p>Debug:</p>
+
+	<table class="table" >
+    <tbody>
+		<tr *ngFor="let i of clientes">
+      <td>{{i.id}}</td>
+      <td>{{i.name}}</td>
+      <td>{{i.address}}</td>
+		</tr>
+    </tbody>
+	</table>
