@@ -39,7 +39,7 @@ export class ClientCreateComponent implements OnInit {
   }
 
   showSuccess() {
-    this.toastr.success("Cliente", "Creado exitosamente!");
+    this.toastr.success("Cliente", "Creado exitosamente!", {"progressBar": true,timeOut:3000});
    
   }
   ngOnInit() {
