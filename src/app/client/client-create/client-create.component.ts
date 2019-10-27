@@ -10,7 +10,7 @@ import { ClientService } from "../client.service";
 })
 export class ClientCreateComponent implements OnInit {
   clientForm: FormGroup;
-  client: Client;
+
   clientes: Client[];
 
   constructor(
@@ -26,9 +26,10 @@ export class ClientCreateComponent implements OnInit {
   createClient(newClient: Client) {
     // Process checkout data here
     console.warn("el cliente fue creado", newClient);
-    this.clientService
-      .createClient(newClient)
-      .subscribe(client => (this.client = client));
+
+    this.clientService.createClient(newClient).subscribe(client => {
+      this.clientes.push(client);
+    });
     this.clientForm.reset();
   }
 
