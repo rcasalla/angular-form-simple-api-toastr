@@ -28,7 +28,7 @@ export class ClientService {
   }
   /** POST: add a new client to the server */
   createClient(client: Client): Observable<Client> {
-    return this.http.post<Client>(this.clientesUrl, client, this.httpOptions);
+    return this.http.post<Client>(this.clientesUrl, client, this.httpOptions).pipe(tap((client: Client) => console.log(`added editorial w/ ${client.name} id=${client.id}`)));
   }
 
   /** DELETE: delete the client from the server */
