@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+
+import { ToastrService } from "ngx-toastr";
+
 import { Client } from "../client";
 import { ClientService } from "../client.service";
 
@@ -15,7 +18,8 @@ export class ClientCreateComponent implements OnInit {
 
   constructor(
     private clientService: ClientService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.clientForm = this.formBuilder.group({
       name: ["", [Validators.required, Validators.minLength(2)]],
@@ -29,10 +33,14 @@ export class ClientCreateComponent implements OnInit {
 
     this.clientService.createClient(newClient).subscribe(client => {
       this.clientes.push(client);
+       this.showSuccess();
     });
     this.clientForm.reset();
   }
 
+  showSuccess() {
+    this.toastr.success("Cliente", "Creado exitosamente!");
+  }
   ngOnInit() {
     this.clientService
       .getClientes()
