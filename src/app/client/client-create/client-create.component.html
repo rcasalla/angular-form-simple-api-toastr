@@ -2,35 +2,49 @@
 
 	<div class="form-group mx-sm-3 mb-2">
 		<label for="name">
-      Name
-    </label>
-		<input novalidate
-    id="name"
-    class="form-control"
-      formControlName="name"
-      placeholder="Your Full Name">
+			Name
+		</label>
+		<input novalidate id="name" class="form-control" formControlName="name" placeholder="Your Full Name">
 
 		<div class="alert alert-danger alert-dismissible fade show"
 			*ngIf="clientForm.get('name').hasError('required') && clientForm.get('name').touched">
 			Name required
 		</div>
+
+		<div class="alert alert-danger alert-dismissible fade show"
+			*ngIf="clientForm.get('name').hasError('minlength')">
+			Name too short
+		</div>
+
 	</div>
 
 	<div class="form-group  mx-sm-3 mb-2">
 		<label for="address">
-      Address
-    </label>
-		<input id="address" type="text"
-     class="form-control"
-     formControlName="address"
-     placeholder="Your Address">
+			Address
+		</label>
+		<input id="address" type="text" class="form-control" formControlName="address" placeholder="Your Address">
 
 		<div class="alert alert-danger alert-dismissible fade show"
 			*ngIf="clientForm.get('address').hasError('required') && clientForm.get('address').touched">
 			Address required
 		</div>
-  </div>
-		<button class="button mx-sm-3 mb-2" type="submit">Create</button>
+	</div>
+
+	<div class="form-group  mx-sm-3 mb-2">
+		<label for="email">
+			Email
+		</label>
+		<input id="email" type="text" class="form-control" formControlName="email" placeholder="Your Email">
+		<div class="alert alert-danger alert-dismissible fade show"
+			*ngIf="clientForm.get('email').hasError('required') && clientForm.get('email').touched">
+			Email required
+		</div>
+		<div class="alert alert-danger alert-dismissible fade show"
+			*ngIf="clientForm.get('email').touched && clientForm.get('email').hasError('email')">
+			Incorrect email format
+		</div>
+
+	</div>
+	<button class="button mx-sm-3 mb-2" type="submit" [disabled]='!clientForm.valid'>Create</button>
 
 </form>
-
